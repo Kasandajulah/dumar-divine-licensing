@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dumar Divine — Music Licensing Catalog</title>
+  <meta name="description" content="Rights-cleared, AI-assisted vocal music catalog by Dumar Divine. Written by Bancroft Anthony Chin Jr. Produced & curated by Kasan Da Julah." />
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#0b0b0b;
+      --muted:#5a5a5a;
+      --hair:#e8e8e8;
+      --card:#fafafa;
+      --accent:#111111;
+      --radius:18px;
+      --max:980px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font:16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      letter-spacing:0.1px;
+    }
+    a{color:inherit; text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 64px}
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter:saturate(150%) blur(10px);
+      background:rgba(255,255,255,.88);
+      border-bottom:1px solid var(--hair);
+    }
+    .topbar-inner{max-width:var(--max); margin:0 auto; padding:12px 18px; display:flex; gap:14px; align-items:center; justify-content:space-between}
+    .brand{display:flex; flex-direction:column}
+    .brand b{font-size:13px; letter-spacing:1.2px}
+    .brand span{font-size:12px; color:var(--muted)}
+    nav{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
+    nav a{font-size:12px; color:var(--muted)}
+
+    /* Hero */
+    .hero{padding:34px 0 18px}
+    .hero h1{margin:0; font-size:44px; letter-spacing:1px}
+    .hero p{margin:10px 0 0; color:var(--muted); max-width:70ch}
+    .pillrow{margin-top:18px; display:flex; gap:10px; flex-wrap:wrap}
+    .pill{
+      border:1px solid var(--hair);
+      background:var(--card);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .cta{margin-top:18px; display:flex; gap:10px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px;
+      border-radius:14px;
+      border:1px solid var(--hair);
+      background:var(--ink);
+      color:#fff;
+      font-size:13px;
+      letter-spacing:.3px;
+    }
+    .btn.secondary{background:#fff; color:var(--ink)}
+
+    /* Sections */
+    section{padding:22px 0}
+    .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:16px}
+    @media (max-width: 860px){.grid{grid-template-columns:1fr}}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--hair);
+      border-radius:var(--radius);
+      padding:18px;
+    }
+    h2{margin:0 0 10px; font-size:16px; letter-spacing:.9px}
+    .small{font-size:12px; color:var(--muted)}
+    ul{margin:10px 0 0; padding-left:18px}
+    li{margin:6px 0; color:var(--ink)}
+
+    /* Pricing */
+    .pricing{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px}
+    @media (max-width: 980px){.pricing{grid-template-columns:repeat(2, 1fr)}}
+    @media (max-width: 560px){.pricing{grid-template-columns:1fr}}
+    .price h3{margin:0; font-size:14px}
+    .price .tag{margin-top:6px; font-size:12px; color:var(--muted)}
+    .price .amt{margin-top:12px; font-size:22px; letter-spacing:.4px}
+    .price .list{margin-top:10px; font-size:12px; color:var(--muted)}
+    .price .list div{margin:6px 0}
+
+    /* Tracklist */
+    .track-tools{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; margin-bottom:12px}
+    .search{
+      flex:1;
+      min-width:220px;
+      border:1px solid var(--hair);
+      border-radius:999px;
+      padding:10px 12px;
+      font-size:13px;
+      outline:none;
+      background:#fff;
+    }
+    .chips{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{
+      border:1px solid var(--hair);
+      background:#fff;
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      cursor:pointer;
+      user-select:none;
+    }
+    .chip.active{background:var(--ink); color:#fff; border-color:var(--ink)}
+
+    .tracks{display:grid; grid-template-columns:repeat(2, 1fr); gap:10px}
+    @media (max-width: 740px){.tracks{grid-template-columns:1fr}}
+    .track{
+      padding:12px 12px;
+      border:1px solid var(--hair);
+      background:#fff;
+      border-radius:16px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .num{width:28px; color:var(--muted); font-size:12px; padding-top:2px}
+    .meta b{display:block; font-size:13px}
+    .meta span{display:block; font-size:12px; color:var(--muted); margin-top:2px}
+
+    /* Footer */
+    footer{padding-top:22px; border-top:1px solid var(--hair); margin-top:22px}
+    footer .row{display:flex; gap:12px; flex-wrap:wrap; justify-content:space-between; align-items:flex-end}
+    .fine{font-size:12px; color:var(--muted)}
+
+    /* Print */
+    @media print{
+      .topbar, .cta, .track-tools{display:none !important}
+      body{font-size:12px}
+      .wrap{padding:0}
+      .card{break-inside:avoid}
+      a{text-decoration:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <b>DUMAR DIVINE</b>
+        <span>Music Licensing Catalog</span>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#use">Use Cases</a>
+        <a href="#licensing">Licensing</a>
+        <a href="#tracklist">Tracklist</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <header class="hero">
+      <h1>DUMAR DIVINE</h1>
+      <p>
+        Rights-cleared catalog of original songs written by <b>Bancroft Anthony Chin Jr.</b>, performed by <b>Dumar Divine</b> using
+        AI-assisted vocal production, and produced/curated by <b>Kasan Da Julah</b>.
+      </p>
+      <div class="pillrow" aria-label="Highlights">
+        <div class="pill">AI-assisted vocal music</div>
+        <div class="pill">Commercially licensed</div>
+        <div class="pill">Instrumentals & edits available</div>
+        <div class="pill">Hip-hop · Conscious · Love · Reggae</div>
+      </div>
+      <div class="cta">
+        <a class="btn" href="#contact">License a Track</a>
+        <a class="btn secondary" href="#tracklist">Browse Tracklist</a>
+        <!-- Replace with your hosted PDF link when ready -->
+        <a class="btn secondary" href="YOUR_PDF_LINK_HERE" target="_blank" rel="noopener">Download PDF</a>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="grid">
+        <div class="card">
+          <h2>ABOUT THE MUSIC</h2>
+          <p class="small">
+            This catalog blends cinematic hip-hop, spoken word, conscious themes, love/lifestyle records, and reggae/roots energy.
+            Built for modern storytelling across TV/film, documentary, advertising, and digital platforms.
+          </p>
+          <ul>
+            <li><b>100% original</b> lyrics & compositions</li>
+            <li><b>AI-assisted vocal performances</b> (commercially licensed)</li>
+            <li><b>Sync-ready</b> with clear rights & documentation</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>RIGHTS & CLEARANCE</h2>
+          <p class="small">
+            Lyrics & composition: <b>Bancroft Anthony Chin Jr.</b><br/>
+            Performance: <b>Dumar Divine</b> (AI-assisted vocal performance)<br/>
+            Production: <b>Kasan Da Julah</b><br/>
+            Master recordings: licensed for commercial use; no celebrity voice likeness.
+          </p>
+          <p class="small">Written confirmation of rights and licensing authority available upon request.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="use">
+      <div class="grid">
+        <div class="card">
+          <h2>IDEAL USE CASES</h2>
+          <ul>
+            <li>YouTube channels & digital series</li>
+            <li>Podcasts (intro/outro, beds)</li>
+            <li>Short films & documentaries</li>
+            <li>Brand content & social ads</li>
+            <li>Motivational / educational media</li>
+            <li>Apps & streaming platforms</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>DELIVERY</h2>
+          <ul>
+            <li>WAV + MP3</li>
+            <li>Instrumentals (when applicable)</li>
+            <li>Edits: 60/30/15 sec on request</li>
+            <li>Metadata included</li>
+            <li>License certificate (PDF)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="licensing">
+      <div class="card">
+        <h2>LICENSING OPTIONS</h2>
+        <p class="small">Non-exclusive and semi-exclusive licensing available. Custom/exclusive terms on request.</p>
+        <div class="pricing" role="list">
+          <div class="card price" role="listitem">
+            <h3>Basic</h3>
+            <div class="tag">Non-exclusive</div>
+            <div class="amt">$49</div>
+            <div class="list">
+              <div>• One digital project</div>
+              <div>• YouTube/social/podcast</div>
+              <div>• Monetization allowed</div>
+              <div>• No paid ads/film</div>
+            </div>
+          </div>
+          <div class="card price" role="listitem">
+            <h3>Standard</h3>
+            <div class="tag">Non-exclusive (Most Popular)</div>
+            <div class="amt">$249</div>
+            <div class="list">
+              <div>• Unlimited digital projects</div>
+              <div>• Monetized content + brand use</div>
+              <div>• Small/mid campaigns</div>
+            </div>
+          </div>
+          <div class="card price" role="listitem">
+            <h3>Premium</h3>
+            <div class="tag">Semi-exclusive</div>
+            <div class="amt">$999+</div>
+            <div class="list">
+              <div>• Film/doc/commercial</div>
+              <div>• Priority track selection</div>
+              <div>• Limited exclusivity options</div>
+            </div>
+          </div>
+          <div class="card price" role="listitem">
+            <h3>Custom / Exclusive</h3>
+            <div class="tag">By request</div>
+            <div class="amt">Quote</div>
+            <div class="list">
+              <div>• Broadcast & large campaigns</div>
+              <div>• Exclusivity / buyout options</div>
+              <div>• Fast delivery on request</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tracklist">
+      <div class="card">
+        <h2>TRACKLIST</h2>
+        <p class="small">Search and filter by theme. Instrumentals and edits available upon request.</p>
+
+        <div class="track-tools">
+          <input id="q" class="search" type="search" placeholder="Search titles or themes…" aria-label="Search tracklist" />
+          <div class="chips" aria-label="Theme filters">
+            <div class="chip active" data-filter="all">All</div>
+            <div class="chip" data-filter="love">Love</div>
+            <div class="chip" data-filter="sexual">Sexual</div>
+            <div class="chip" data-filter="conscious">Conscious</div>
+            <div class="chip" data-filter="hiphop">Hip-hop</div>
+            <div class="chip" data-filter="reggae">Reggae</div>
+          </div>
+        </div>
+
+        <div id="tracks" class="tracks" aria-label="Tracklist">
+          <!-- Tracks injected by JS -->
+        </div>
+
+        <p id="count" class="small" style="margin-top:12px"></p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="grid">
+        <div class="card">
+          <h2>HOW TO LICENSE</h2>
+          <p class="small">
+            To license a track or request a custom package, contact:<br/>
+            <b>Kasan Da Julah</b> — Producer / Curator
+          </p>
+          <ul>
+            <li>Email: <a href="mailto:KASANDAJULAH@GMAIL.COM">KASANDAJULAH@GMAIL.COM</a></li>
+            <li>Catalog link: <a href="YOUR_CATALOG_LINK_HERE" target="_blank" rel="noopener">YOUR_CATALOG_LINK_HERE</a></li>
+            <li>Instant licensing: <a href="YOUR_STORE_LINK_HERE" target="_blank" rel="noopener">YOUR_STORE_LINK_HERE</a></li>
+          </ul>
+          <p class="small">Custom AI-assisted songs available (24–72 hrs), written by Bancroft Anthony Chin Jr.</p>
+        </div>
+        <div class="card">
+          <h2>ONE-LINE RIGHTS STATEMENT</h2>
+          <p class="small">
+            “All music written by Bancroft Anthony Chin Jr.; performed by Dumar Divine (AI-assisted vocal performance);
+            produced/curated by Kasan Da Julah; master recordings licensed for commercial use; no celebrity voice likeness.”
+          </p>
+        </div>
+      </div>
+
+      <footer>
+        <div class="row">
+          <div class="fine">© Dumar Divine / Kasan Da Julah · Written by Bancroft Anthony Chin Jr. · All Rights Reserved</div>
+          <div class="fine"><a href="#">Back to top</a></div>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    const TRACKS = [
+      {title:"Out Ta Dry", theme:"Breakup song", tags:["conscious"]},
+      {title:"Dead Turkey", theme:"Native American protest", tags:["conscious"]},
+      {title:"Summer Time", theme:"Love song · Sexual", tags:["love","sexual"]},
+      {title:"Black Energy", theme:"Black pride", tags:["conscious"]},
+      {title:"Cherry Blossom Lips", theme:"Love song", tags:["love"]},
+      {title:"Sacred Sex", theme:"Sexual", tags:["sexual"]},
+      {title:"Shiverz", theme:"Sexual", tags:["sexual"]},
+      {title:"City Hypocrites", theme:"Hip-hop feel", tags:["hiphop"]},
+      {title:"It’s On", theme:"Love song · Sexual", tags:["love","sexual"]},
+      {title:"Min of Your Time", theme:"Love song", tags:["love"]},
+      {title:"Way It Iz", theme:"Socially conscious", tags:["conscious"]},
+      {title:"U Changed", theme:"Breakup song", tags:["conscious"]},
+      {title:"Bionic and Amazing", theme:"Sexual love song", tags:["love","sexual"]},
+      {title:"Like Button", theme:"Love song", tags:["love"]},
+      {title:"Let Me X-Plain", theme:"Hip-hop feel", tags:["hiphop"]},
+      {title:"Price to Pay", theme:"Socially conscious · Anti-war", tags:["conscious"]},
+      {title:"Stress", theme:"Socially conscious", tags:["conscious"]},
+      {title:"Empress", theme:"Love song · Poetic", tags:["love"]},
+      {title:"Take A Chance", theme:"Love song", tags:["love"]},
+      {title:"Without U Love", theme:"Love song", tags:["love"]},
+      {title:"The Best", theme:"Love song", tags:["love"]},
+      {title:"You Are the One", theme:"Love song", tags:["love"]},
+      {title:"Bless the Children", theme:"Reggae · Socially conscious", tags:["reggae","conscious"]},
+      {title:"Chalice", theme:"Reggae", tags:["reggae"]},
+      {title:"My Lady", theme:"Reggae", tags:["reggae","love"]},
+    ];
+
+    const $tracks = document.getElementById('tracks');
+    const $q = document.getElementById('q');
+    const $chips = Array.from(document.querySelectorAll('.chip'));
+    const $count = document.getElementById('count');
+
+    let activeFilter = 'all';
+
+    function norm(s){return (s||'').toLowerCase();}
+
+    function render(){
+      const query = norm($q.value);
+      const filtered = TRACKS.filter((t)=>{
+        const matchesQuery = !query || norm(t.title).includes(query) || norm(t.theme).includes(query);
+        const matchesFilter = activeFilter==='all' || (t.tags||[]).includes(activeFilter);
+        return matchesQuery && matchesFilter;
+      });
+
+      $tracks.innerHTML = '';
+      filtered.forEach((t, idx)=>{
+        const n = TRACKS.indexOf(t) + 1;
+        const el = document.createElement('div');
+        el.className = 'track';
+        el.innerHTML = `
+          <div class="num">${n}</div>
+          <div class="meta">
+            <b>${t.title}</b>
+            <span>${t.theme}</span>
+          </div>
+        `;
+        $tracks.appendChild(el);
+      });
+
+      $count.textContent = `${filtered.length} of ${TRACKS.length} tracks shown`;
+    }
+
+    $q.addEventListener('input', render);
+
+    $chips.forEach((chip)=>{
+      chip.addEventListener('click', ()=>{
+        $chips.forEach(c=>c.classList.remove('active'));
+        chip.classList.add('active');
+        activeFilter = chip.dataset.filter;
+        render();
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
